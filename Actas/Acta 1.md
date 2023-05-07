@@ -4,7 +4,7 @@ A fecha de **4 de Mayo de 2023** se celebra la primera reunión del grupo **3ti2
 
 ## Puntos a tratar 
 
-+ [Resumen sobre las exposiciones de los miembros del equipo](#Resumen sobre las exposiciones de los miembros del equipo)
++  [[Acta 1#Resumen sobre las exposiciones de los miembros del equipo| Resumen sobre las exposiciones de los miembros del equipo]]
 - [[Acta 1#Elección de los medios de comunicación| Elección de los medios de comunicación]]
 + [[Acta 1#Elección de los días periodicos de reunión| Elección de los días periodicos de reunión]]
 - [[Acta 1#Elección del deposito de materiales| Elección del deposito de materiales]]
