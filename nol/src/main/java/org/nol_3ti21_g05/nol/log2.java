@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+
 @WebServlet(name = "log2", value = "/log2")
 public class log2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,11 +17,14 @@ public class log2 extends HttpServlet {
     public log2() {
         super();
     }
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		File file1 = new File(getServletContext().getInitParameter("logPath"));
 
-		PrintWriter pw2 = new PrintWriter(new FileOutputStream(new File(getServletContext().getInitParameter("logPath")),true));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String path = getServletContext().getInitParameter("log-path");
+		File file1 = new File(path);
+
+		PrintWriter printWriter = new PrintWriter(
+				new FileOutputStream(path, true)
+		);
 		String usuario = request.getParameter("user");
 
 		try {
@@ -29,8 +33,17 @@ public class log2 extends HttpServlet {
 			System.out.println("No se pudo crear el fichero");
 		}
 
-		pw2.println(LocalDateTime.now().toString() + " " + request.getQueryString() + " " + usuario + " "  + request.getRemoteAddr() + " " + getServletName() + " " + request.getRequestURI() + " " + request.getMethod());
-		pw2.close();
+        printWriter.printf(
+                "%s %s %s %s %s %s %s%n",
+                LocalDateTime.now(),
+                request.getQueryString(),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+		printWriter.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

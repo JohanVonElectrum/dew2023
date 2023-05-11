@@ -3,4 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+
+    <context-param>
+        <param-name>log-path</param-name>
+        <param-value>nol-log.log</param-value>
+    </context-param>
 </web-app>

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+
 @WebServlet(name = "log0", value = "/log0")
 public class log0 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,13 +17,23 @@ public class log0 extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		PrintWriter pw = response.getWriter();
+		PrintWriter printWriter = response.getWriter();
 		String usuario = request.getParameter("user");
 
-		String preTituloHTML5 = "<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />";
 		response.setContentType("text/html");
-		pw.println(preTituloHTML5);
-		pw.println(LocalDateTime.now().toString() + " " + request.getQueryString() + " " + usuario + " " + request.getRemoteAddr() + " " + getServletName() + " " + request.getRequestURI() + " " + request.getMethod());
+		printWriter.printf(
+				"<!DOCTYPE html>\n<html>\n<head>\n" +
+						"<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />" +
+						"</head><body>%s %s %s %s %s %s %s</body></html>",
+				LocalDateTime.now(),
+				request.getQueryString(),
+				usuario,
+				request.getRemoteAddr(),
+				getServletName(),
+				request.getRequestURI(),
+				request.getMethod()
+		);
+		printWriter.close();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
