@@ -11,26 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class log2 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public log2() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String path = getServletContext().getInitParameter("log-path");
-		File file1 = new File(path);
+        File file1 = new File(path);
 
-		PrintWriter printWriter = new PrintWriter(
-				new FileOutputStream(path, true)
-		);
-		String usuario = request.getParameter("user");
+        PrintWriter printWriter = new PrintWriter(
+                new FileOutputStream(path, true)
+        );
+        String usuario = request.getParameter("user");
 
-		try {
-			file1.createNewFile();
-		}catch(Exception e) {
-			System.out.println("No se pudo crear el fichero");
-		}
+        try {
+            file1.createNewFile();
+        }catch(Exception e) {
+            System.out.println("No se pudo crear el fichero");
+        }
 
         printWriter.printf(
                 "%s %s %s %s %s %s %s%n",
@@ -42,10 +42,10 @@ public class log2 extends HttpServlet {
                 request.getRequestURI(),
                 request.getMethod()
         );
-		printWriter.close();
-	}
+        printWriter.close();
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
+    }
 }

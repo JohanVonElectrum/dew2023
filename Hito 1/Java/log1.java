@@ -11,37 +11,37 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class log1 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public log1() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		File file = new File("log-NOL-dew.log");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        File file = new File("log-NOL-dew.log");
 
-		try {
-			file.createNewFile();
-		}catch(Exception e) {
-			System.out.println("No se pudo crear el fichero");
-		}
-		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, true));
-		String usuario = request.getParameter("user");
+        try {
+            file.createNewFile();
+        }catch(Exception e) {
+            System.out.println("No se pudo crear el fichero");
+        }
+        PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, true));
+        String usuario = request.getParameter("user");
 
-		printWriter.printf(
-				"%s %s %s %s %s %s %s%n",
-				LocalDateTime.now(),
-				request.getQueryString(),
-				usuario,
-				request.getRemoteAddr(),
-				getServletName(),
-				request.getRequestURI(),
-				request.getMethod()
-		);
-		printWriter.close();
-	}
+        printWriter.printf(
+                "%s %s %s %s %s %s %s%n",
+                LocalDateTime.now(),
+                request.getQueryString(),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+        printWriter.close();
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
+    }
 }
