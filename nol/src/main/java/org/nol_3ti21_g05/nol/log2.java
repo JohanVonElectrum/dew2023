@@ -47,6 +47,31 @@ public class log2 extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        doGet(request, response);
+        String path = getServletContext().getInitParameter("log-path");
+        File file1 = new File(path);
+
+        PrintWriter printWriter = new PrintWriter(
+                new FileOutputStream(path, true)
+        );
+        String usuario = request.getParameter("email");
+
+        try {
+            file1.createNewFile();
+        }catch(Exception e) {
+            System.out.println("No se pudo crear el fichero");
+        }
+
+        printWriter.printf(
+                "%s email=%s&password=%s %s %s %s %s%n",
+                LocalDateTime.now(),
+                request.getParameter("email"),
+                request.getParameter("password"),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+        printWriter.close();
     }
 }

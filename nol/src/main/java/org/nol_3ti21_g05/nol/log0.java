@@ -37,6 +37,23 @@ public class log0 extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        doGet(request, response);
+        PrintWriter printWriter = response.getWriter();
+        String usuario = request.getParameter("email");
+
+        response.setContentType("text/html");
+        printWriter.printf(
+                "<!DOCTYPE html>\n<html>\n<head>\n" +
+                        "<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />" +
+                        "</head><body>%s email=%s&password=%s %s %s %s %s</body></html>",
+                LocalDateTime.now(),
+                request.getParameter("email"),
+                request.getParameter("password"),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+        printWriter.close();
     }
 }
