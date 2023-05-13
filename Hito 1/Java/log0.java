@@ -1,16 +1,14 @@
-import java.io.File;
+package org.nol_3ti21_g05.nol;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 
 
+@WebServlet(name = "log0", value = "/log0")
 public class log0 extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +37,23 @@ public class log0 extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        doGet(request, response);
+        PrintWriter printWriter = response.getWriter();
+        String usuario = request.getParameter("email");
+
+        response.setContentType("text/html");
+        printWriter.printf(
+                "<!DOCTYPE html>\n<html>\n<head>\n" +
+                        "<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />" +
+                        "</head><body>%s email=%s&password=%s %s %s %s %s</body></html>",
+                LocalDateTime.now(),
+                request.getParameter("email"),
+                request.getParameter("password"),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+        printWriter.close();
     }
 }
