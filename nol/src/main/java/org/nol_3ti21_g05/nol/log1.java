@@ -43,6 +43,27 @@ public class log1 extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        doGet(request, response);
+        File file = new File("log-NOL-dew.log");
+
+        try {
+            file.createNewFile();
+        }catch(Exception e) {
+            System.out.println("No se pudo crear el fichero");
+        }
+        PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, true));
+        String usuario = request.getParameter("email");
+
+        printWriter.printf(
+                "%s email=%s&password=%s %s %s %s %s%n",
+                LocalDateTime.now(),
+                request.getParameter("email"),
+                request.getParameter("password"),
+                usuario,
+                request.getRemoteAddr(),
+                getServletName(),
+                request.getRequestURI(),
+                request.getMethod()
+        );
+        printWriter.close();
     }
 }
