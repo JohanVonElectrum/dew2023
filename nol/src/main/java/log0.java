@@ -1,11 +1,10 @@
-package org.nol_3ti21_g05.nol;
-
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 
 @WebServlet(name = "log0", value = "/log0")
@@ -16,6 +15,7 @@ public class log0 extends HttpServlet {
         super();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter printWriter = response.getWriter();
         String usuario = request.getParameter("user");
@@ -36,6 +36,7 @@ public class log0 extends HttpServlet {
         printWriter.close();
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter printWriter = response.getWriter();
         String usuario = request.getParameter("email");
