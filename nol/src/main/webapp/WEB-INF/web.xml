@@ -9,4 +9,18 @@
         <param-name>log-path</param-name>
         <param-value>nol-log.log</param-value>
     </context-param>
+    <context-param>
+        <param-name>data-base-url</param-name>
+        <param-value>localhost:9090/CentroEducativo</param-value>
+    </context-param>
+    <context-param>
+        <param-name>secret</param-name>
+        <param-value>Lj_3wSh29$apkKC/</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>NOL</servlet-name>
+        <servlet-class>org.nol_3ti21_g05.NOL</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 </web-app>

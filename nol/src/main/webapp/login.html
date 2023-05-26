@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio de Sesión | NOL</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="style/style.css" rel="stylesheet"/>
+    <script src="src/api.js"></script>
+    <script src="src/login.js"></script>
+</head>
+<body class="background-radial-gradient overflow-hidden">
+    <div class="background-radial-gradient">
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+            <div class="row gx-lg-5 align-items-center mb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                        Inicio de sesión<br />
+                    </h1>
+                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                        Introduce tus datos para iniciar sesión o pulsa en el botón de registrarse si no tienes cuenta
+
+                    </p>
+                </div>
+
+                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                    <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                    <div class="card bg-glass">
+                        <div class="card-body px-4 py-5 px-md-5">
+                            <h3 class="mb-4">Iniciar sesión</h3>
+                            <div>
+                                <label class="form-label" for="role-btns">Iniciar sesión como: </label>
+                                <div class="btn-group" role="group" id="role-btns" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="role-group" id="alu" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="alu">Alumno</label>
+
+                                    <input type="radio" class="btn-check" name="role-group" id="pro" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="pro">Profesor</label>
+                                </div>
+                            </div>
+                            <form onsubmit="onLoginSubmit(event)">
+                                <!-- DNI input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="dni">DNI</label>
+                                    <input type="text" id="dni" name="dni" class="form-control" placeholder="Introduce tu DNI con letra"/>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="password">Contraseña</label>
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Introduce tu contraseña"/>
+                                </div>
+
+                                <!-- Submit button -->
+
+                                <button type="submit" class="btn btn-primary btn-block mb-4">
+                                    Iniciar sesión
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
