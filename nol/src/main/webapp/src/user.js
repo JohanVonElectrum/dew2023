@@ -7,7 +7,8 @@
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("dni");
-        window.location.href = window.location.protocol + "//" + window.location.host + "/nol/login.html";
+        window.location.href = window.location.protocol + "//" + window.location.host + "/" +
+            window.location.pathname.split("/")[1] + "/login.html";
         return;
     }
 
@@ -18,7 +19,8 @@
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("dni");
-        window.location.href = window.location.protocol + "//" + window.location.host + "/nol/login.html";
+        window.location.href = window.location.protocol + "//" + window.location.host + "/" +
+            window.location.pathname.split("/")[1] + "/login.html";
     });
 
     document.getElementById("data-of-title").innerText = role === "alu" ? "Datos del alumno" : "Datos del profesor";

@@ -3,7 +3,8 @@ const login = async (dni, password, role) => {
     requestBody.append("dni", dni);
     requestBody.append("password", password);
 
-    const baseUrl = window.location.protocol + "//" + window.location.host + "/nol/api/login";
+    const baseUrl = window.location.protocol + "//" + window.location.host + "/" +
+        window.location.pathname.split("/")[1] + "/api/login";
     return fetch(baseUrl, {
         method: "POST",
         headers: {
@@ -23,12 +24,13 @@ const logout = async () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("dni");
-    window.location.href = window.location.protocol + "//" + window.location.host + "/nol/login.html";
+    window.location.href = window.location.protocol + "//" + window.location.host + "/" +
+        window.location.pathname.split("/")[1] + "/login.html";
 }
 
 const getAlumno = async (dni, token) => {
     const baseUrl = window.location.protocol + "//" + window.location.host +
-        "/nol/api/alumnos/" + dni + "?key=" + token;
+        "/" + window.location.pathname.split("/")[1] + "/api/alumnos/" + dni + "?key=" + token;
     return fetch(baseUrl, {
         method: "GET"
     }).then(response => response.json())
@@ -36,7 +38,7 @@ const getAlumno = async (dni, token) => {
 
 const getProfesor = async (dni, token) => {
     const baseUrl = window.location.protocol + "//" + window.location.host +
-        "/nol/api/profesores/" + dni + "?key=" + token;
+        "/" + window.location.pathname.split("/")[1] + "/api/profesores/" + dni + "?key=" + token;
     return fetch(baseUrl, {
         method: "GET"
     }).then(response => response.json())
@@ -44,7 +46,8 @@ const getProfesor = async (dni, token) => {
 
 const getAsignaturas = async (role, dni, token) => {
     const baseUrl = window.location.protocol + "//" + window.location.host +
-        "/nol/api/" + (role === "alu" ? "alumnos" : "profesores") + "/" + dni + "/asignaturas?key=" + token;
+        "/" + window.location.pathname.split("/")[1] + "/api/" +
+        (role === "alu" ? "alumnos" : "profesores") + "/" + dni + "/asignaturas?key=" + token;
     return fetch(baseUrl, {
         method: "GET"
     }).then(response => response.json())

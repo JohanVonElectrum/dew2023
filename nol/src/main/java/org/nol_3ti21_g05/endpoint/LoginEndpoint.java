@@ -17,6 +17,8 @@ public class LoginEndpoint extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        resp.setCharacterEncoding("UTF-8");
+
         String dni = req.getParameter("dni");
         String password = req.getParameter("password");
 

@@ -28,6 +28,7 @@ public class AlumnosEndpoint extends ProtectedEndpoint {
             String ceSession
     ) {
         CentroEducativo centroEducativo = NOL.getCentroEducativo();
+        resp.setCharacterEncoding("UTF-8");
 
         try {
             Optional<Alumno> alumno = getAlumno(dni, token, ceSession, centroEducativo);

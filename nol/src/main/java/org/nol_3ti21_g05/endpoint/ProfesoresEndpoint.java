@@ -20,6 +20,8 @@ public class ProfesoresEndpoint extends ProtectedEndpoint {
             String token,
             String ceSession
     ) {
+        resp.setCharacterEncoding("UTF-8");
+
         CentroEducativo centroEducativo = NOL.getCentroEducativo();
         CompletableFuture<Profesor> future = centroEducativo.getProfesor(dni, token, ceSession);
 
