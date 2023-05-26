@@ -21,6 +21,8 @@
         window.location.href = window.location.protocol + "//" + window.location.host + "/nol/login.html";
     });
 
+    document.getElementById("data-of-title").innerText = role === "alu" ? "Datos del alumno" : "Datos del profesor";
+
     getAsignaturas(role, dni, token).then(data => {
         fillAsignaturas(role, data);
     });
