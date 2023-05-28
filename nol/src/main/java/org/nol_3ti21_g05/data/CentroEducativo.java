@@ -158,6 +158,23 @@ public class CentroEducativo {
         });
     }
 
+    public CompletableFuture<String> getAlumnosAsignatura(String codigo, String token, String ceSession) {
+        Request request = new Request.Builder()
+                .url(dataBaseUrl + "/asignaturas/" + codigo + "/alumnos?key=" + token)
+                .header("Cookie", "JSESSIONID=" + ceSession)
+                .build();
+        return wrap(request).thenApply(response -> {
+            if (response.code() == 200) {
+                try {
+                    return response.body().string();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return null;
+        });
+    }
+
     private CompletableFuture<Response> wrap(Request request) {
         return CompletableFuture.supplyAsync(() -> {
             try {
