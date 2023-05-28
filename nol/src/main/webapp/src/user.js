@@ -15,6 +15,7 @@
     (role === "alu" ? getAlumno : getProfesor)(dni, token).then(data => {
         document.getElementById("username").innerText = data.nombre + " " + data.apellidos;
         document.getElementById("dni").innerText = data.dni;
+        if (data.img) document.getElementById("imgAlumno").src = data.img;
     }).catch(error => {
         localStorage.removeItem("token");
         localStorage.removeItem("role");

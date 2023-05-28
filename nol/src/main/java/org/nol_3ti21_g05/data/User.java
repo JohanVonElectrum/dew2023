@@ -13,6 +13,7 @@ public abstract class User {
     private final String dni;
     private final String nombre;
     private final String apellidos;
+    private String img;
     private String token;
     private String ceSession;
 
@@ -50,6 +51,14 @@ public abstract class User {
         return apellidos;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String encoded() throws NoSuchAlgorithmException {
         JsonObject json = new JsonObject();
         json.add("user", toJson());
@@ -64,6 +73,9 @@ public abstract class User {
         json.addProperty("dni", dni);
         json.addProperty("nombre", nombre);
         json.addProperty("apellidos", apellidos);
+        if (img != null) {
+            json.addProperty("img", img);
+        }
         return json;
     }
 }
