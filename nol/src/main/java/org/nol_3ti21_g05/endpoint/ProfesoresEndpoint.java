@@ -15,12 +15,12 @@ public class ProfesoresEndpoint extends ProtectedEndpoint {
     @Override
     protected void doGetProtected(
             HttpServletRequest req,
-            HttpServletResponse resp,
+            HttpServletResponse res,
             String dni,
             String token,
             String ceSession
     ) {
-        resp.setCharacterEncoding("UTF-8");
+        res.setCharacterEncoding("UTF-8");
 
         CentroEducativo centroEducativo = NOL.getCentroEducativo();
         CompletableFuture<Profesor> future = centroEducativo.getProfesor(dni, token, ceSession);
@@ -28,14 +28,14 @@ public class ProfesoresEndpoint extends ProtectedEndpoint {
         try {
             Profesor profesor = future.get();
             if (profesor == null) {
-                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 System.err.println("profesor is null");
                 return;
             }
-            resp.getWriter().write(profesor.toJson().toString());
-            resp.setStatus(HttpServletResponse.SC_OK);
+            res.getWriter().write(profesor.toJson().toString());
+            res.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             System.err.println("error");
         }
     }

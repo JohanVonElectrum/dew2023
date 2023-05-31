@@ -10,40 +10,31 @@ import java.util.regex.Pattern;
 public abstract class ProtectedEndpoint extends HttpServlet {
 
     @Override
-    protected final void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String dni = req.getPathInfo().split("/")[1];
-        String token = req.getParameter("key");
+    protected final void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String dni = (String) req.getSession().getAttribute("user-dni");
+        String token = (String) req.getSession().getAttribute("ce-token");
         String ceSession = (String) req.getSession().getAttribute("ce-session");
 
-        if (dni == null || token == null || dni.isEmpty() || token.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            System.err.println("dni or token is missing");
+        if (dni == null || token == null || ceSession == null ||
+                dni.isEmpty() || token.isEmpty() || ceSession.isEmpty() ||
+                !Pattern.matches("^[0-9]{8}[A-Z]$", dni)
+        ) {
+            res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            System.err.println("user is not logged in");
             return;
         }
 
-        if (!Pattern.matches("^[0-9]{8}[A-Z]$", dni)) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            System.err.println("dni is not valid");
-            return;
-        }
-
-        if (ceSession == null || ceSession.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            System.err.println("ce-session is null");
-            return;
-        }
-
-        this.doGetProtected(req, resp, dni, token, ceSession);
+        this.doGetProtected(req, res, dni, token, ceSession);
     }
 
     void doGetProtected(
-            HttpServletRequest request,
-            HttpServletResponse response,
+            HttpServletRequest req,
+            HttpServletResponse res,
             String dni,
             String token,
             String ceSession
     ) throws ServletException, IOException {
-        super.doGet(request, response);
+        super.doGet(req, res);
     }
 
 }

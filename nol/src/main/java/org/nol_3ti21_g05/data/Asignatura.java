@@ -24,4 +24,24 @@ public class Asignatura {
     public int getNota() {
         return nota;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getAcronimo() {
+        return acronimo;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public String getCuatrimestre() {
+        return cuatrimestre;
+    }
+
+    public int getCurso() {
+        return curso;
+    }
 }

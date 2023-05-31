@@ -1,32 +1,21 @@
 (() => {
-    const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
     const dni = localStorage.getItem("dni");
 
-    if (!token || !role || !dni) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("dni");
-        window.location.href = window.location.protocol + "//" + window.location.host + "/" +
-            window.location.pathname.split("/")[1] + "/login.html";
+    if (!role || !dni) {
+        logout();
         return;
     }
 
-    (role === "alu" ? getAlumno : getProfesor)(dni, token).then(data => {
+    (role === "alu" ? getAlumno : getProfesor)(dni).then(data => {
         document.getElementById("username").innerText = data.nombre + " " + data.apellidos;
         document.getElementById("dni").innerText = data.dni;
         if (data.img) document.getElementById("imgAlumno").src = data.img;
-    }).catch(error => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("dni");
-        window.location.href = window.location.protocol + "//" + window.location.host + "/" +
-            window.location.pathname.split("/")[1] + "/login.html";
-    });
+    }).catch(logout);
 
     document.getElementById("data-of-title").innerText = role === "alu" ? "Datos del alumno" : "Datos del profesor";
 
-    getAsignaturas(role, dni, token).then(data => {
+    getAsignaturas(role, dni).then(data => {
         fillAsignaturas(role, data);
     });
 })();

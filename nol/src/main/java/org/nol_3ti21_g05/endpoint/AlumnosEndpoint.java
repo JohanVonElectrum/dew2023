@@ -22,13 +22,14 @@ public class AlumnosEndpoint extends ProtectedEndpoint {
     @Override
     protected void doGetProtected(
             HttpServletRequest req,
-            HttpServletResponse resp,
+            HttpServletResponse res,
             String dni,
             String token,
             String ceSession
     ) {
+        res.setCharacterEncoding("UTF-8");
+
         CentroEducativo centroEducativo = NOL.getCentroEducativo();
-        resp.setCharacterEncoding("UTF-8");
 
         try {
             Optional<Alumno> alumno = getAlumno(dni, token, ceSession, centroEducativo);
@@ -36,18 +37,18 @@ public class AlumnosEndpoint extends ProtectedEndpoint {
             if (alumno.isPresent()) {
                 String[] path = req.getPathInfo().substring(1).split("/");
                 if (path.length == 2 && path[1].equals("asignaturas")) {
-                    new Gson().toJson(alumno.get().getAsignaturas().get(), resp.getWriter());
+                    new Gson().toJson(alumno.get().getAsignaturas().get(), res.getWriter());
                 } else {
-                    resp.getWriter().write(alumno.get().toJson().toString());
+                    res.getWriter().write(alumno.get().toJson().toString());
                 }
 
-                resp.setStatus(HttpServletResponse.SC_OK);
+                res.setStatus(HttpServletResponse.SC_OK);
             } else {
-                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 System.err.println("alumno is null");
             }
         } catch (Exception e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace();
         }
     }

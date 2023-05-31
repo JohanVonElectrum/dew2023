@@ -15,8 +15,14 @@ const onLoginSubmit = async (event,) => {
     const dni = document.getElementById("dni").value;
     const password = document.getElementById("password").value;
 
-    login(dni, password, selectedRole).then(session => {
-        window.location.href = "index.html";
+    login(dni, password).then(success => {
+        if (success) {
+            localStorage.setItem("role", selectedRole);
+            localStorage.setItem("dni", dni);
+            window.location.href = "index.html";
+        } else {
+            alert("Credenciales incorrectas");
+        }
     }).catch(error => {
         console.log(error);
     });
