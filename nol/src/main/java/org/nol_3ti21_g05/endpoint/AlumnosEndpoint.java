@@ -3,20 +3,13 @@ package org.nol_3ti21_g05.endpoint;
 import com.google.gson.Gson;
 import org.nol_3ti21_g05.NOL;
 import org.nol_3ti21_g05.data.Alumno;
-import org.nol_3ti21_g05.data.Asignatura;
 import org.nol_3ti21_g05.data.CentroEducativo;
-import org.nol_3ti21_g05.data.Profesor;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.regex.Pattern;
 
-@WebServlet(name = "AlumnosEndpoint", value = "/api/alumnos/*")
 public class AlumnosEndpoint extends ProtectedEndpoint {
 
     @Override

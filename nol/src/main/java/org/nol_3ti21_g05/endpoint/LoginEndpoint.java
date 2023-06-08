@@ -3,14 +3,12 @@ package org.nol_3ti21_g05.endpoint;
 import org.nol_3ti21_g05.NOL;
 import org.nol_3ti21_g05.data.CentroEducativo;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 
-@WebServlet(name = "LoginEndpoint", value = "/api/login")
 public class LoginEndpoint extends HttpServlet {
 
     private static final String DATA_LOGIN_ENDPOINT = "/login";

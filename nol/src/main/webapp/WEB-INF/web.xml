@@ -23,4 +23,31 @@
         <servlet-class>org.nol_3ti21_g05.NOL</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <servlet>
+        <servlet-name>AlumnosEndpoint</servlet-name>
+        <servlet-class>org.nol_3ti21_g05.endpoint.AlumnosEndpoint</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AlumnosEndpoint</servlet-name>
+        <url-pattern>/api/alumnos/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProfesoresEndpoint</servlet-name>
+        <servlet-class>org.nol_3ti21_g05.endpoint.ProfesoresEndpoint</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfesoresEndpoint</servlet-name>
+        <url-pattern>/api/profesores/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginEndpoint</servlet-name>
+        <servlet-class>org.nol_3ti21_g05.endpoint.LoginEndpoint</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginEndpoint</servlet-name>
+        <url-pattern>/api/login</url-pattern>
+    </servlet-mapping>
 </web-app>
